@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     [SerializeField]
-    private Transform mouseVisualTransform;
+    private Transform pfWoodHarvester;
 
     private Camera mainCamera;
 
@@ -16,10 +16,13 @@ public class BuildingManager : MonoBehaviour
 
     void Update()
     {
-        mouseVisualTransform.position = GetMousePosition();
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(pfWoodHarvester, GetMouseWorldPosition(), Quaternion.identity);
+        }
     }
 
-    private Vector3 GetMousePosition()
+    private Vector3 GetMouseWorldPosition()
     {
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0f;
